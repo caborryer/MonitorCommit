@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import useStyles from '../styles/admin-monitor';
+import useStyles from '../styles/adminOptions';
 import Layout from '../components/layout';
 import Breadcrumbs from "../components/breadcrumbs";
 import GoBackButton from "../components/goBackButton";
@@ -11,12 +11,12 @@ import {Box, Button, Grid} from "@material-ui/core";
 import BankQuestion from "../assets/Icontarjetas.svg";
 import RankingIcon from "../assets/rankingIcon.png";
 
-const AllConcentrated = () => {
+const AdminOptions = () => {
     const classes = useStyles();
 
     const breadcrumbs = {
         crumbs: [],
-        actualLinkName: 'Administrador',
+        actualLinkName: 'Admin options',
     };
 
     return(
@@ -28,10 +28,10 @@ const AllConcentrated = () => {
             <Box mt={8}>
                 <Grid container>
                     <Grid item xs={12} className={classes.todosConcentradosGrid}>
-                        <PageTitle redFont='Adm' inheritFont='in config'/>
+                        <PageTitle redFont='Ad' inheritFont='min options'/>
                     </Grid>
                     <Grid item xs={12} md={6} className={classes.todosConcentradosGrid}>
-                        <Link to='/' className={classes.link}>
+                        <Link to='/todos-concentrados-asignar-preguntas' className={classes.link}>
                             <Button
                                 className={classes.todosConcentradosAdminButton}
                                 fullWidth
@@ -48,7 +48,7 @@ const AllConcentrated = () => {
                                 fullWidth
                                 startIcon={<img src={RankingIcon} alt='Icono de ranking' className={classes.buttonImage}/>}
                             >
-                                Stadistics
+                                Charts
                             </Button>
                         </Link>
                     </Grid>
@@ -58,4 +58,4 @@ const AllConcentrated = () => {
     )
 }
 
-export default AllConcentrated
+export default AdminOptions;

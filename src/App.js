@@ -10,6 +10,8 @@ import store from './store';
 
 // Pages
 import AdminPage from './pages/admin-monitoring';
+import AdminOptions from './pages/admin-options';
+import CommitSection from './pages/commit-history';
 
 
 
@@ -22,6 +24,8 @@ const App = () => {
           <Router>
             <Switch>
               <Route exact path='/' component={AdminPage}/>
+              <Route exact path='/admin-options' component={AdminOptions}/>
+                <Route exact path='/commit-history' component={CommitSection}/>
             </Switch>
           </Router>
         </Provider>

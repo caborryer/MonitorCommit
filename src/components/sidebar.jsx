@@ -34,7 +34,6 @@ import WeAllKnowBlue from "../assets/todossabemosblue.svg";
 
 
 const Sidebar = () => {
-    const history = useHistory();
     const classes = useStyles();
     const dispatch = useDispatch();
     const userName = "Admin"
@@ -93,7 +92,7 @@ const Sidebar = () => {
                     Salir
                 </Button>
                 <Divider className={classes.divider}/>
-                <Link to="/" className={classes.link}>
+                <Link to="/admin-options" className={classes.link}>
                     <Box
                         className={clsx(classes.sidebarButton, {
                             [classes.sidebarButtonSelected]:
@@ -111,7 +110,7 @@ const Sidebar = () => {
                         Administrador
                     </Box>
                 </Link>
-                <Link to="/monitoring-commits" className={classes.link}>
+                <Link to="/commit-history" className={classes.link}>
                     <Box
                         className={clsx(classes.sidebarButton, {
                             [classes.sidebarButtonSelected]:
@@ -131,7 +130,7 @@ const Sidebar = () => {
                         Monitor your commits
                     </Box>
                 </Link>
-                <Link to="/users" className={classes.link}>
+                <Link to="/admin-options" className={classes.link}>
                     <Box  className={clsx(classes.sidebarButton, {
                         [classes.sidebarButtonSelected]:
                         selectedItemMenu === USERS,
@@ -150,7 +149,7 @@ const Sidebar = () => {
                         Users
                     </Box>
                 </Link>
-                <Link to='/data-bank' className={classes.link}>
+                <Link to='/admin-options' className={classes.link}>
                     <Box className={clsx(classes.sidebarButton, {
                         [classes.sidebarButtonSelectedGreen]: selectedItemMenu === DATA_BANK
                     })}
@@ -161,7 +160,7 @@ const Sidebar = () => {
                         Data bank
                     </Box>
                 </Link>
-                <Link to="/service-testing" className={classes.link}>
+                <Link to="/admin-options" className={classes.link}>
                     <Box
                         className={clsx(classes.sidebarButton, {
                             [classes.sidebarButtonSelectedRose]:
@@ -181,7 +180,7 @@ const Sidebar = () => {
                         Service testing
                     </Box>
                 </Link>
-                <Link to="/charts" className={classes.link}>
+                <Link to="/admin-options" className={classes.link}>
                     <Box
                         className={clsx(classes.sidebarButton, {
                             [classes.sidebarButtonSelectedRed]:
@@ -198,7 +197,7 @@ const Sidebar = () => {
                             alt="charts"
                             className={classes.sidebarIconImg}
                         />
-                        charts
+                        Charts
                     </Box>
                 </Link>
             </Box>
