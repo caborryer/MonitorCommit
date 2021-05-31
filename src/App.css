@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'DINPro_Black';
+  src: url(./assets/fonts/DINPro_Black.otf);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: 'DINPro_Bold';
+  src: url(./assets/fonts/DINPro_Bold.otf);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@font-face {
+  font-family: 'DINPro_Regular';
+  src: url(./assets/fonts/DINPro-Regular_13937.ttf);
 }
 
-.App-link {
-  color: #61dafb;
+@font-face {
+  font-family: 'Knockout_JuniorBantmanwt';
+  src: url(./assets/fonts/Knockout_HTF27-JuniorBantamwt_Regular.otf);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: 'Knockout_JuniorFeatherwt';
+  src: url(./assets/fonts/Knockout_HTF28-JuniorFeatherwt_Regular.otf);
+}
+
+@font-face {
+  font-family: 'Knockout_FullFeaterwt';
+  src: url(./assets/fonts/Knockout_HTF68-FullFeatherwt_Regular.otf);
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url(./assets/fonts/Lato-Regular.ttf);
+}
+
+h1, h2, h3, h4, h5, h6, span, div, p, strong, small {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+input, select, button {
+  outline: none;
 }
