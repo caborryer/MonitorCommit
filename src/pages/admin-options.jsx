@@ -31,7 +31,7 @@ const AdminOptions = () => {
                         <PageTitle redFont='Ad' inheritFont='min options'/>
                     </Grid>
                     <Grid item xs={12} md={6} className={classes.todosConcentradosGrid}>
-                        <Link to='/todos-concentrados-asignar-preguntas' className={classes.link}>
+                        <Link to='/' className={classes.link}>
                             <Button
                                 className={classes.todosConcentradosAdminButton}
                                 fullWidth
@@ -42,7 +42,7 @@ const AdminOptions = () => {
                         </Link>
                     </Grid>
                     <Grid item xs={12} md={6} className={classes.todosConcentradosGrid}>
-                        <Link to='/ranking-todos-concentrados' className={classes.link}>
+                        <Link to='/' className={classes.link}>
                             <Button
                                 className={classes.todosConcentradosAdminButton}
                                 fullWidth

@@ -80,7 +80,7 @@ const Sidebar = () => {
                     />
                 </Box>
                 <Typography variant="body1" className={classes.workPosition}>
-                    Gerente de cuenta
+                    Developer
                 </Typography>
                 <Button
                     color="secondary"
