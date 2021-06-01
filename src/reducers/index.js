@@ -1,14 +1,13 @@
 import {combineReducers} from 'redux';
 import authReducer from './authReducer';
-import allKnowAssignQuestionByLevelReducer from "./allKnowAssignQuestionByLevelReducer";
-import layoutReducer from "./layoutReducer";
-import cardBanksListReducer from './cardBanksListReducer';
+import layoutReducer from './layoutReducer';
+
+
 
 
 export default combineReducers({
   auth: authReducer,
-  allKnowAssignQuestionByLevel: allKnowAssignQuestionByLevelReducer,
   layout: layoutReducer,
-  cardBanksList: cardBanksListReducer,
+
 
 });

@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {commitHistory} from '../config/axios';
+import {USER, REPONAME} from "../config/secrets";
 import clsx from 'clsx';
 import useStyles from '../styles/commit-history';
 import Layout from '../components/layout';
@@ -18,8 +20,6 @@ import {
     Collapse,
     Avatar,
     IconButton
-
-
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -27,9 +27,13 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import QuestionBankIcon from '../assets/bancoDePreguntasBlue.svg';
 
 
+
 const QuestionBank = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [commits, setCommits] = useState([]);
+
+    console.log(commits)
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -40,6 +44,37 @@ const QuestionBank = () => {
         crumbs: [],
         actualLinkName: 'Commit history',
     };
+
+    // const getCommits = async () => {
+    //     const response = await commitHistory({userName: USER, repoName: REPONAME});
+    //     if (response.data.statusCode === 200) {
+    //         setCommits(response.data);
+    //     } else {
+    //         console.error(
+    //             "Ocurrio un problema al obtener los commits",
+    //             "Error",
+    //             3000
+    //         );
+    //     }
+    // }
+
+    const getCommits =() => {
+        commitHistory({userName: USER, repoName: REPONAME}).then((res) => {
+            console.log(res)
+            if (res.statusCode === 200) {
+                setCommits(res.data.totalRepos);
+            }
+
+        }).catch((err) => {
+            console.error(`error: ${err}`)
+        })
+    }
+
+    useEffect(() => {
+        getCommits();
+
+    }, []);
+
 
 
 
@@ -63,72 +98,54 @@ const QuestionBank = () => {
                         </Box>
                     </Paper>
                 </Grid>
-                <Card className={classes.root}>
-                    <CardHeader
-                        avatar={
-                            <Avatar aria-label="recipe" className={classes.avatar}>
-                                R
-                            </Avatar>
-                        }
-                        action={
-                            <IconButton aria-label="settings">
-                                <MoreVertIcon />
-                            </IconButton>
-                        }
-                        title="Shrimp and Chorizo Paella"
-                        subheader="September 14, 2016"
-                    />
-                    <CardMedia
-                        className={classes.media}
-                        image="/static/images/cards/paella.jpg"
-                        title="Paella dish"
-                    />
-                    <CardContent>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            This impressive paella is a perfect party dish and a fun meal to cook together with your
-                            guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                        </Typography>
-                    </CardContent>
-                    <CardActions disableSpacing>
-                        <IconButton
-                            className={clsx(classes.expand, {
-                                [classes.expandOpen]: expanded,
-                            })}
-                            onClick={handleExpandClick}
-                            aria-expanded={expanded}
-                            aria-label="show more"
-                        >
-                            <ExpandMoreIcon />
-                        </IconButton>
-                    </CardActions>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <CardContent>
-                            <Typography paragraph>Method:</Typography>
-                            <Typography paragraph>
-                                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                                minutes.
-                            </Typography>
-                            <Typography paragraph>
-                                Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                                heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                                browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                                and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                                pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-                                saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-                            </Typography>
-                            <Typography paragraph>
-                                Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                                without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                                medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                                again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                                minutes more. (Discard any mussels that don’t open.)
-                            </Typography>
-                            <Typography>
-                                Set aside off of the heat to let rest for 10 minutes, and then serve.
-                            </Typography>
-                        </CardContent>
-                    </Collapse>
-                </Card>
+                <Grid item xs={12} className={classes.cardContainer}>
+                    {commits?.map((commit, index) => (
+                        <Card key ={index} className={classes.root} >
+
+                            <CardHeader
+                                avatar={
+                                    <Avatar aria-label="recipe" className={classes.avatar}>
+                                        R
+                                    </Avatar>
+                                }
+                                action={
+                                    <IconButton aria-label="settings">
+                                        <MoreVertIcon />
+                                    </IconButton>
+                                }
+                                title={commit.author?.login}
+                                subheader={commit.commit?.author?.date}
+
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {commit.commit?.message}
+                                </Typography>
+                            </CardContent>
+                            <CardActions disableSpacing>
+                                <IconButton
+                                    className={clsx(classes.expand, {
+                                        [classes.expandOpen]: expanded,
+                                    })}
+                                    onClick={handleExpandClick}
+                                    aria-expanded={expanded}
+                                    aria-label="show more"
+                                >
+                                    <ExpandMoreIcon />
+                                </IconButton>
+                            </CardActions>
+                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                    <Typography paragraph>Message:</Typography>
+                                    <Typography paragraph>
+                                        {commit.commit?.message}
+                                    </Typography>
+                                </CardContent>
+                            </Collapse>
+                        </Card>
+
+                    )) }
+                </Grid>
             </Grid>
         </Layout>
     )

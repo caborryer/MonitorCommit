@@ -167,6 +167,15 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
+    cardContainer:{
+        display:'flex',
+        flexFlow: 'row wrap',
+        justifyContent: 'space-between',
+        '& .MuiCard-root': {
+            marginBottom: theme.spacing(2)
+        }
+
+    }
 
 }));
 
